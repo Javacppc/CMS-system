@@ -12,8 +12,8 @@ public class TestLog {
 		logger.debug("debug調試級別日誌");
 		logger.info("info 調試級別日誌");
 		logger.warn("warn 調試級別日誌");
-		logger.error("error 調試級別日誌");
-		logger.fatal("fatal 調試級別日誌");
+		logger.error("~~~~~-------error 調試級別日誌");
+		logger.fatal("~~~~~-------fatal 調試級別日誌");
 	}
 
 }
