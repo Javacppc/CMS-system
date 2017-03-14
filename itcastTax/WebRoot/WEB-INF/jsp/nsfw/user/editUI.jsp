@@ -20,9 +20,11 @@
         <tr>
             <td class="tdBg" width="200px">头像：</td>
             <td>
-                
-                    <img src="" width="100" height="100"/>
-                
+                	<s:if test="%{user.headImg != null && user.headImg != ''}">
+                		<!-- 這裡只是顯示了圖片而已，並未設置字段去保存圖片 -->
+                    	<img src="${basePath}upload/<s:property value='user.headImg' />" width="100" height="100"/>
+                    	<s:hidden name="user.headImg"/>
+                	</s:if>
                 <input type="file" name="headImg"/>
             </td>
         </tr>

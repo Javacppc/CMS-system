@@ -1,7 +1,12 @@
 package com.itcast.nsfw.user.action;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.itcast.nsfw.user.entity.User;
@@ -19,12 +24,46 @@ public class UserAction extends ActionSupport{
 	 * 用於接收用戶的輸入
 	 */
 	private User user;
-	
+	/**
+	 * 用於批量刪除時用
+	 */
 	private String[] selectedRow;
+	//上傳文件的三大要素
+	private File headImg;
+	private String headImgContentType;
+	private String headImgFileName;
+	/**
+	 * 將用戶上傳的文件上傳到本服務器的地址目錄
+	 */
+	private String savePath;
 	
 	
 	
 	
+	public String getSavePath() {
+		return ServletActionContext.getServletContext().getRealPath(savePath);
+	}
+	public void setSavePath(String savePath) {
+		this.savePath = savePath;
+	}
+	public File getHeadImg() {
+		return headImg;
+	}
+	public void setHeadImg(File headImg) {
+		this.headImg = headImg;
+	}
+	public String getHeadImgContentType() {
+		return headImgContentType;
+	}
+	public void setHeadImgContentType(String headImgContentType) {
+		this.headImgContentType = headImgContentType;
+	}
+	public String getHeadImgFileName() {
+		return headImgFileName;
+	}
+	public void setHeadImgFileName(String headImgFileName) {
+		this.headImgFileName = headImgFileName;
+	}
 	public String[] getSelectedRow() {
 		return selectedRow;
 	}
@@ -54,8 +93,23 @@ public class UserAction extends ActionSupport{
 	}
 	//保存新增
 	public String add() {
-		if (user != null) {
-			userService.save(user);
+		try {
+			if (user != null) {
+				//如果上傳了圖片
+				if (headImg != null) {
+					//設置文件名稱
+					String fileName = UUID.randomUUID().toString() 
+							+ headImgFileName.substring(headImgFileName.lastIndexOf("."));
+					//保存文件到服務器
+					FileUtils.copyFile(headImg, new File(savePath, fileName));
+					//設置用戶圖像路徑
+					user.setHeadImg("user/" + fileName);
+				}
+				
+				userService.save(user);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return "list";
 	}
@@ -67,8 +121,22 @@ public class UserAction extends ActionSupport{
 	}
 	//保存編輯
 	public String edit() {
-		if (user != null) {
-			userService.update(user);
+		try {
+			if (user != null) {
+				//如果上傳了圖片
+				if (headImg != null) {
+					//設置文件名稱
+					String fileName = UUID.randomUUID().toString() 
+							+ headImgFileName.substring(headImgFileName.lastIndexOf("."));
+					//保存文件到服務器
+					FileUtils.copyFile(headImg, new File(savePath, fileName));
+					//設置用戶圖像路徑
+					user.setHeadImg("user/" + fileName);
+				}				
+				userService.update(user);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return "list";
 	}

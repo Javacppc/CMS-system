@@ -1,5 +1,6 @@
 package com.itcast.nsfw.user.entity;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -60,6 +61,10 @@ public class User implements Serializable {
 	public static String USER_STATE_INVALID = "0";
 	
 
+	
+	
+
+	
 	public User() {
 	}
 	public User(String id, String dept, String account, String name, String password, String headImg, boolean gender,
