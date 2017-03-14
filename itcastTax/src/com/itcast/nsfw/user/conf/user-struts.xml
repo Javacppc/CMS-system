@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <package name="user-action" extends="struts-default" namespace="/nsfw">
+    	<!-- 這裡的整合代表Struts自己管理自己的，與spring容器不在一起 -->
+    	<action name="user_*" class="com.itcast.nsfw.user.action.UserAction" method="{1}">
+    		<result name="{1}">/WEB-INF/jsp/nsfw/user/{1}.jsp</result>
+    		<result name="list" type="redirectAction">
+    			<!-- 重定向顯示列表頁面 -->
+    			<param name="actionName">user_listUI</param>
+    		</result>
+    	</action>
+    </package>
+	
+
+</struts>
