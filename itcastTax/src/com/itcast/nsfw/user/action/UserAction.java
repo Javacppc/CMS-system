@@ -101,7 +101,7 @@ public class UserAction extends ActionSupport{
 					String fileName = UUID.randomUUID().toString() 
 							+ headImgFileName.substring(headImgFileName.lastIndexOf("."));
 					//保存文件到服務器
-					FileUtils.copyFile(headImg, new File(savePath, fileName));
+					FileUtils.copyFile(headImg, new File(getSavePath(), fileName));
 					//設置用戶圖像路徑
 					user.setHeadImg("user/" + fileName);
 				}
@@ -129,7 +129,7 @@ public class UserAction extends ActionSupport{
 					String fileName = UUID.randomUUID().toString() 
 							+ headImgFileName.substring(headImgFileName.lastIndexOf("."));
 					//保存文件到服務器
-					FileUtils.copyFile(headImg, new File(savePath, fileName));
+					FileUtils.copyFile(headImg, new File(getSavePath(), fileName));
 					//設置用戶圖像路徑
 					user.setHeadImg("user/" + fileName);
 				}				
