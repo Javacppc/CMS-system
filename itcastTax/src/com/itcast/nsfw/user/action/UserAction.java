@@ -147,7 +147,10 @@ public class UserAction extends ActionSupport{
 		}
 		return "list";
 	}
-	//批量刪除
+	/**
+	 * 批量刪除
+	 * @return
+	 */
 	public String deleteSelected() {
 		if (selectedRow != null) {
 			for (String id : selectedRow) {
