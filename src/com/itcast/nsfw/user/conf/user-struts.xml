@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <package name="user-action" extends="struts-default" namespace="/nsfw">
+    	<!-- 這裡的整合代表Struts自己管理自己的，與spring容器不在一起 -->
+    	<action name="user_*" class="com.itcast.nsfw.user.action.UserAction" method="{1}">
+    		<!-- <interceptor-ref name="fileUpload">
+    			<param name="allowedTypes">image/png,image/gif,image/jpeg</param>
+    			<param name="maximumSize">2000</param>
+    		</interceptor-ref>
+    		<interceptor-ref name="defaultStack"/> -->
+    		<param name="savePath">/upload/user</param>
+    		<result name="{1}">/WEB-INF/jsp/nsfw/user/{1}.jsp</result>
+    		<result name="list" type="redirectAction">
+    			<!-- 重定向顯示列表頁面 -->
+    			<param name="actionName">user_listUI</param>
+    		</result>
+    		<!-- <result name="input">/WEB-INF/jsp/nsfw/user/{1}UI.jsp</result>
+    		<result>/WEB-INF/jsp/nsfw/user/listUI.jsp</result> -->
+    	</action>
+    </package>
+	
+
+</struts>
