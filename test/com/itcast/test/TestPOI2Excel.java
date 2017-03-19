@@ -166,6 +166,5 @@ public class TestPOI2Excel {
 		
 		workbook.close();
 		out.close();
-		
 	}
 }
