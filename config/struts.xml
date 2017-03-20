@@ -2,15 +2,28 @@
 <!DOCTYPE struts PUBLIC
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
-
 <struts>
-
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <constant name="struts.devMode" value="true" />
     <constant name="struts.ui.theme" value="simple" />
 	<constant name="struts.action.extension" value="action" />
 	<constant name="struts.custom.i18n.resources" value="messageResource"/>
+	<package name="base-default" extends="struts-default">
+		<!-- 返回結果類型 -->
+		<result-types>
+			<result-type name="error" class="com.taxsys.core.action.SysResultAction"></result-type>
+		</result-types>
+		<global-results>
+			<result name="error" type="error">/WEB-INF/jsp/error.jsp</result>
+			<result name="sysError">/WEB-INF/jsp/error.jsp</result>
+			<result name="input">/WEB-INF/jsp/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="sysError" exception="com.taxsys.core.exception.SysException" />
+			<exception-mapping result="input" exception="java.lang.Exception"/>
+		</global-exception-mappings>
+	</package>
 	<!-- 包含test-struts.xml文件 -->
-	<include file="com/itcast/test/conf/test-struts.xml"/>
-	<include file="com/itcast/nsfw/user/conf/user-struts.xml"/>
+	<include file="com/taxsys/test/conf/test-struts.xml"/>
+	<include file="com/taxsys/nsfw/user/conf/user-struts.xml"/>
 </struts>

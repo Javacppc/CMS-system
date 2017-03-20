@@ -33,11 +33,11 @@
 	p:dataSource-ref="dataSource">
 		<property name="annotatedClasses">
 			<list>
-				<!-- <value>classpath:com/itcast/nsfw/*/entity/*.hbm.xml</value>
-				<value>classpath:com/itcast/test/entity/*.hbm.xml</value> -->
+				<!-- <value>classpath:com/taxsys/nsfw/*/entity/*.hbm.xml</value>
+				<value>classpath:com/taxsys/test/entity/*.hbm.xml</value> -->
 				
-				<value>com.itcast.test.entity.Person</value>
-				<value>com.itcast.nsfw.user.entity.User</value>
+				<value>com.taxsys.test.entity.Person</value>
+				<value>com.taxsys.nsfw.user.entity.User</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -67,13 +67,13 @@
 	<aop:config>
 		<!-- 凡是以Service結尾的類都會掃描到 -->
 		<aop:pointcut expression="bean(*Service)" id="serviceOperations"/>
-		<!-- <aop:pointcut expression="execution(* com.itcast..service.impl.*.*(..))" id="serviceOperations"/> -->
+		<!-- <aop:pointcut expression="execution(* com.taxsys..service.impl.*.*(..))" id="serviceOperations"/> -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperations"/>
 	</aop:config>
 	<!-- 注解方式配置事務 -->
 	<!-- <tx:annotation-driven transaction-manager="transactionManager"/> -->
 	
 	<!-- 引入外部spring配置文件 -->
-	<import resource="classpath:com/itcast/*/conf/*-spring.xml"/>
-	<import resource="classpath:com/itcast/nsfw/*/conf/*-spring.xml"/>
+	<import resource="classpath:com/taxsys/*/conf/*-spring.xml"/>
+	<import resource="classpath:com/taxsys/nsfw/*/conf/*-spring.xml"/>
 </beans>
