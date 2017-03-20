@@ -18,22 +18,22 @@
 		}
 		//彈出新增頁面
 		function doAdd() {
-			document.forms[0].action = "${bathPath}nsfw/user_addUI.action";
+			document.forms[0].action = "${basePath}nsfw/user_addUI.action";
 			document.forms[0].submit();
 		}
 		
 		function doEdit(id) {
-			document.forms[0].action = "${bathPath}nsfw/user_editUI.action?user.id="+id;
+			document.forms[0].action = "${basePath}nsfw/user_editUI.action?user.id="+id;
 			document.forms[0].submit();
 		}
 		
 		function doDelete(id) {
-			document.forms[0].action = "${bathPath}nsfw/user_delete.action?user.id="+id;
+			document.forms[0].action = "${basePath}nsfw/user_delete.action?user.id="+id;
 			document.forms[0].submit();
 		}
 		
 		function doDeleteAll() {
-			document.forms[0].action = "${bathPath}nsfw/user_deleteSelected.action";
+			document.forms[0].action = "${basePath}nsfw/user_deleteSelected.action";
 			document.forms[0].submit();
 		}
 		function doExportExcel() {

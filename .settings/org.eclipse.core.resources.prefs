@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//WebRoot/WEB-INF/jsp/error.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/test/test.jsp=UTF-8
 encoding//config/messageResource.properties=UTF-8
 encoding//database/database.sql=UTF-8
