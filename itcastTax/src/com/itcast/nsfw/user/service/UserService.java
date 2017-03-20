@@ -1,7 +1,10 @@
 package com.itcast.nsfw.user.service;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.List;
+
+import javax.servlet.ServletOutputStream;
 
 import com.itcast.nsfw.user.entity.User;
 
@@ -21,4 +24,6 @@ public interface UserService {
 		// 获取实体总数
 		long findCount();
 		User findById(Serializable id);
+		void exportExcel(List<User> listUser, ServletOutputStream outputStream);
+		void importExcel(File headImg, String headImgFileName);
 }

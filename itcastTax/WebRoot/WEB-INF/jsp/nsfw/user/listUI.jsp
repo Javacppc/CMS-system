@@ -36,6 +36,13 @@
 			document.forms[0].action = "${bathPath}nsfw/user_deleteSelected.action";
 			document.forms[0].submit();
 		}
+		function doExportExcel() {
+			window.open("${basePath}nsfw/user_exportExcel.action");
+		}
+		function doImportExcel() {
+			document.forms[0].action = "${basePath}nsfw/user_importExcel.action";
+			document.forms[0].submit();
+		}
 	</script>
 </head>
 <body class="rightBody">
@@ -53,7 +60,8 @@
                         <input type="button" value="新增" class="s_button" onclick="doAdd()"/>&nbsp;
                         <input type="button" value="删除" class="s_button" onclick="doDeleteAll()"/>&nbsp;
                         <input type="button" value="导出" class="s_button" onclick="doExportExcel()"/>&nbsp;
-                    	<input name="userExcel" type="file"/>
+                    	<!-- 由於接受用戶上傳的文件的步驟都是一樣的，所以我們在這裡借用了上傳 圖片headImg的方法-->
+                    	<input name="headImg" type="file"/>
                         <input type="button" value="导入" class="s_button" onclick="doImportExcel()"/>&nbsp;
 
                     </li>
