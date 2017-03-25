@@ -1,14 +1,15 @@
 package com.taxsys.nsfw.user.entity;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 @Entity
@@ -55,13 +56,15 @@ public class User implements Serializable {
 	@Column(name="user_memo", length=200)
 	private String memo;
 	/**
+	 * 不將該屬性映射到數據庫表中
+	 */
+	@Transient
+	private List<UserRole> userRoles;
+	/**
 	 * 用戶狀態
 	 */
 	public static String USER_STATE_VALID = "1";
 	public static String USER_STATE_INVALID = "0";
-	
-
-	
 	
 
 	
@@ -84,6 +87,12 @@ public class User implements Serializable {
 		this.memo = memo;
 	}
 	
+	public List<UserRole> getUserRoles() {
+		return userRoles;
+	}
+	public void setUserRoles(List<UserRole> userRoles) {
+		this.userRoles = userRoles;
+	}
 	public String getId() {
 		return id;
 	}
@@ -156,5 +165,4 @@ public class User implements Serializable {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
-	
 }

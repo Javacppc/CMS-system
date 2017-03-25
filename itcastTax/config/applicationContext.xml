@@ -10,6 +10,8 @@
 	<bean id="daoTemplate" 
 	abstract="true" 
 	p:sessionFactory-ref="sessionFactory"/>
+	
+	<bean id="permissionCheck" class="com.taxsys.core.permission.impl.PermissionCheckImpl" />
 	<context:property-placeholder location="classpath:db.properties"/>
 	<!-- acquireIncrement表示當連接池中的連接耗盡時c3p0一次同時獲取的連接數
 		 maxIdleTime表示最大空閒時間，1800秒尚未使用則連接被丟棄，若為0則永不丟棄 -->
@@ -38,6 +40,9 @@
 				
 				<value>com.taxsys.test.entity.Person</value>
 				<value>com.taxsys.nsfw.user.entity.User</value>
+				<value>com.taxsys.nsfw.role.entity.Role</value>
+				<value>com.taxsys.nsfw.role.entity.RolePrivilege</value>
+				<value>com.taxsys.nsfw.user.entity.UserRole</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

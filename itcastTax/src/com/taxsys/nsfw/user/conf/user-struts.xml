@@ -5,7 +5,7 @@
 
 <struts>
 
-    <package name="user-action" extends="struts-default" namespace="/nsfw">
+    <package name="user-action" extends="base-default" namespace="/nsfw">
     	<!-- 這裡的整合代表Struts自己管理自己的，與spring容器不在一起 -->
     	<action name="user_*" class="com.taxsys.nsfw.user.action.UserAction" method="{1}">
     		<!-- <interceptor-ref name="fileUpload">
@@ -23,6 +23,4 @@
     		<result>/WEB-INF/jsp/nsfw/user/listUI.jsp</result> -->
     	</action>
     </package>
-	
-
 </struts>
