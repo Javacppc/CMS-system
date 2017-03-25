@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="login-action" extends="base-default" namespace="/sys">
+    	<!-- 這裡的整合代表Struts自己管理自己的，與spring容器不在一起 -->
+    	<action name="login_*" class="com.taxsys.login.action.LoginAction" method="{1}">
+    		<!-- 一個首頁肯定會比較複雜  不可能太簡單 -->
+    		<result name="{1}">/WEB-INF/jsp/{1}.jsp</result>
+    		<result name="loginUI">/WEB-INF/jsp/loginUI.jsp</result>
+    		<result name="noPermissionUI">/WEB-INF/jsp/noPermissionUI.jsp</result>
+    		<result name="homepage" type="redirectAction">
+    			<param name="actionName">home</param>
+    		</result>
+    	</action>
+    </package>
+</struts>
