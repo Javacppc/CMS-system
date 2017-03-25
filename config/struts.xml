@@ -26,4 +26,11 @@
 	<!-- 包含test-struts.xml文件 -->
 	<include file="com/taxsys/test/conf/test-struts.xml"/>
 	<include file="com/taxsys/nsfw/user/conf/user-struts.xml"/>
+	<include file="com/taxsys/nsfw/role/conf/role-struts.xml"/>
+	<!-- 加載系統首頁 -->
+	<include file="com/taxsys/home/conf/home-struts.xml" />
+	<!-- 加載納稅服務子系統的首頁 -->
+	<include file="com/taxsys/nsfw/home/conf/home-struts.xml" />
+	<!-- 加載登陸頁面 -->
+	<include file="com/taxsys/login/conf/login-struts.xml" />
 </struts>

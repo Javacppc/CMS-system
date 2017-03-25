@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=src/com/taxsys/login/conf/login-struts.xml
+validator.Unchecked=

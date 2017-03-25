@@ -20,8 +20,10 @@ import org.springframework.stereotype.Service;
 
 import com.taxsys.core.exception.ServiceException;
 import com.taxsys.core.util.ExcelUtil;
+import com.taxsys.nsfw.role.entity.Role;
 import com.taxsys.nsfw.user.dao.UserDao;
 import com.taxsys.nsfw.user.entity.User;
+import com.taxsys.nsfw.user.entity.UserRole;
 import com.taxsys.nsfw.user.service.UserService;
 @Service("userService")
 public class UserServiceImpl implements UserService{
@@ -49,7 +51,10 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void delete(Serializable id) {
+		//刪除用戶
 		userDao.delete(id);
+		//刪除用戶所對應的所有角色（否則UserRole中的數據將永遠留存在數據庫中）
+		userDao.deleteUserRoleByUserId(id);
 	}
 	
 	@Override
@@ -130,5 +135,42 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<User> findUserByIdAndAccount(String id, String account) {
 		return userDao.findUserByIdAndAccount(id, account);
+	}
+	//級聯保存
+	@Override
+	public void saveUserAndRole(User user, String...roleIds) {
+		//1.保存用戶
+		save(user);
+		//2.保存用戶對應的角色
+		//如果系統管理員根本就沒有勾選角色這個欄目的任何選項
+		if (roleIds != null) {
+			for (String roleId : roleIds) {
+				userDao.saveUserRole(new UserRole(new Role(roleId), user.getId()));
+			}
+		}
+	}
+
+	@Override
+	public void updateUserAndRole(User user, String... roleIds) {
+		//1.刪除該用戶對應的所有角色
+		userDao.deleteUserRoleByUserId(user.getId());
+		//2.更新用戶
+		update(user);
+		//3.保存用戶對應的角色
+		if (roleIds != null) {
+			for (String roleId : roleIds) {
+				userDao.saveUserRole(new UserRole(new Role(roleId), user.getId()));
+			}
+		}
+	}
+	
+	@Override
+	public List<UserRole> findUserRoleByUserId(String id) {
+		return userDao.findUserRoleByUserId(id);
+	}
+
+	@Override
+	public List<User> findUserByAccountAndPass(String account, String password) {
+		return userDao.findUserByAccountAndPass(account, password);
 	}
 }
