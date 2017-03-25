@@ -37,11 +37,17 @@ public class RoleServiceImpl implements RoleService{
 
 	@Override
 	public void delete(Role entity) {
+		//刪除角色對應的權限
+		roleDao.deleteRolePrivilegeByRoleId(entity.getRoleId());
+		//刪除角色
 		roleDao.delete(entity);
 	}
 
 	@Override
 	public void delete(Serializable id) {
+		//刪除角色對應的權限
+		roleDao.deleteRolePrivilegeByRoleId(id);
+		//刪除角色
 		roleDao.delete(id);
 	}
 
