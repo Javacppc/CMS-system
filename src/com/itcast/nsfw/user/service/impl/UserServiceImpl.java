@@ -120,4 +120,9 @@ public class UserServiceImpl implements UserService{
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public List<User> findUserByIdAndAccount(String id, String account) {
+		return userDao.findUserByIdAndAccount(id, account);
+	}
 }

@@ -26,4 +26,11 @@ public interface UserService {
 		User findById(Serializable id);
 		void exportExcel(List<User> listUser, ServletOutputStream outputStream);
 		void importExcel(File headImg, String headImgFileName);
+		/**
+		 * 根據用戶id和帳戶名查找
+		 * @param id 用戶id
+		 * @param account 用戶帳戶
+		 * @return
+		 */
+		List<User> findUserByIdAndAccount(String id, String account);
 }

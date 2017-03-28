@@ -10,6 +10,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -199,5 +200,30 @@ public class UserAction extends ActionSupport{
 			}
 		}
 		return "list";
+	}
+	/**
+	 * 驗證帳戶是否已經存在
+	 */
+	public void verifyAccount() {
+		//1.獲取帳號
+		//2.在數據庫中查找是否有同名的帳號
+		if (user != null && StringUtils.isNotBlank(user.getAccount())) {
+			try {
+				List<User> userList = userService.findUserByIdAndAccount(user.getId(), user.getAccount());
+				String strResult = "true";
+				if (userList != null && userList.size() > 0) {
+					//說明帳號已經存在
+					strResult = "false";
+				}
+				HttpServletResponse response = ServletActionContext.getResponse();
+				response.setContentType("text/html");
+				ServletOutputStream output = response.getOutputStream();
+				//將返回的結果輸出到瀏覽器(前端)
+				output.write(strResult.getBytes());
+				output.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

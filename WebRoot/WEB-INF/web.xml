@@ -8,16 +8,6 @@
   	<param-name>contextConfigLocation</param-name>
   	<param-value>classpath:applicationContext.xml</param-value>
   </context-param>
-  <!-- 登錄攔截過濾器（只有登錄國系統的用戶才能使用本系統） -->
-  <filter>
-  	<filter-name>loginFilter</filter-name>
-  	<filter-class>com.taxsys.core.LoginFilter</filter-class>
-  </filter>
-  <filter-mapping>
-  	<filter-name>loginFilter</filter-name>
-  	<url-pattern>*.action</url-pattern>
-  </filter-mapping>
-  <!-- Struts2攔截器 -->
   <filter>
   	<filter-name>struts2</filter-name>
   	<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
