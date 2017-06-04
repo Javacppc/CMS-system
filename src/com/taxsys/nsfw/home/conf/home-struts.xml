@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="nsfwHome-action" extends="base-default" namespace="/nsfw">
+    	<!-- 這裡的整合代表Struts自己管理自己的，與spring容器不在一起 -->
+    	<action name="home_*" class="com.taxsys.nsfw.home.action.HomeAction" method="{1}">
+    		<!-- 一個首頁肯定會比較複雜  不可能太簡單 -->
+    		<result name="{1}">/WEB-INF/jsp/nsfw/{1}.jsp</result>
+    	</action>
+    </package>
+</struts>
